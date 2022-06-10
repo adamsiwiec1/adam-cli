@@ -71,7 +71,7 @@ var privateIp = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		host, _ := os.Hostname()
 		ips, _ := net.LookupIP(host)
-		var count = 0
+		var count = 0 // need 2 use count bc index is not correct
 		if len(ips) > 1 {
 			for _, addr := range ips {
 				if ipv4 := addr.To4(); ipv4 != nil {
@@ -82,6 +82,14 @@ var privateIp = &cobra.Command{
 		} else {
 			fmt.Println("error pulling private ip addresses..")
 		}
+	},
+}
+
+var devicesOnNetwork = &cobra.Command{
+	Use:   "netdev",
+	Short: "finds all device ips on network",
+	Run: func(cmd *cobra.Command, args []string) {
+
 	},
 }
 
